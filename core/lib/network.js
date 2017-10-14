@@ -14,6 +14,13 @@ export async function getNewsFromSource(source, sort = '') {
 		}
 	};
 
-	let response = await axios(options);
+	let response;
+
+	try {
+		response = await axios(options);
+	} catch(error) {
+		response = error;
+	}
+
 	return response;
 }

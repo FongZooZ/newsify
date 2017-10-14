@@ -3,11 +3,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { getNewsFromSource } from './core/lib/network';
-import { newsSource } from './core/config';
+import { newsSources } from './core/config';
 
 export default class App extends Component {
   async componentDidMount() {
-    let cnnNews = await getNewsFromSource('cnn');
+    let news = [];
+    for (let source in newsSources) {
+      let articles = await getNewsFromSource(source);
+      news.push(articles);
+    }
   }
 
   render() {
