@@ -24,15 +24,12 @@ export default class NewsSource extends Component {
 		let sourceTitle = '';
 
 		if (data) {
-			if (data.status == 'ok') {
-				if (data.articles && data.articles.length) {
-					sourceTitle = data.source;
-					for (let article of data.articles) {
-						newsList.push(<News article={article} key={article.url} />);
-					}
+			if (data.status != 'ok') console.log(data);
+			if (data.articles && data.articles.length) {
+				sourceTitle = data.source;
+				for (let article of data.articles) {
+					newsList.push(<News article={article} key={article.url} />);
 				}
-			} else {
-				console.log(data);
 			}
 		}
 		return (
