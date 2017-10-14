@@ -1,35 +1,27 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { getNewsFromSource } from '../../core/lib/network';
+import { StyleSheet, Text, ScrollView } from 'react-native';
 import { newsSources } from '../../core/config';
+import NewsSource from '../partials/newsSource';
 
 export default class Home extends Component {
-	async componentDidMount() {
-		let news = [];
-		for (let source in newsSources) {
-			let articles = await getNewsFromSource(source);
-			news.push(articles);
-		}
+	constructor() {
+		super(...arguments);
 	}
 
 	render() {
+		let sources = [];
+		for (let source of newsSources) {
+			sources.push(<NewsSource source={source} key={source} />);
+		}
+
 		return (
-			<View style={styles.container}>
-				<Text>Open up App.js to start working on your aha app!</Text>
-				<Text>Changes you make will automatically reload or not.</Text>
-				<Text>Shake your phone to open the developer menu.</Text>
-			</View>
+			<ScrollView>
+				{sources}
+			</ScrollView>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
+const styles = StyleSheet.create({});

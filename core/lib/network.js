@@ -4,6 +4,7 @@ import axios from 'axios';
 import { newsAPI } from '../config';
 
 export async function getNewsFromSource(source, sort = '') {
+	if (!source) return [];
 	let options = {
 		method: 'get',
 		url: `${newsAPI.url}`,
@@ -14,13 +15,14 @@ export async function getNewsFromSource(source, sort = '') {
 		}
 	};
 
-	let response;
+	let data;
 
 	try {
-		response = await axios(options);
+		let response = await axios(options);
+		data = response.data;
 	} catch(error) {
-		response = error;
+		data = error;
 	}
 
-	return response;
+	return data;
 }
