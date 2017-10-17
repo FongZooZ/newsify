@@ -28,13 +28,12 @@ export default class NewsSource extends Component {
 			if (data.articles && data.articles.length) {
 				sourceTitle = data.source;
 				for (let article of data.articles) {
-					newsList.push(<News article={article} key={article.url} />);
+					newsList.push(<News article={article} source={sourceTitle} key={article.url} />);
 				}
 			}
 		}
 		return (
 			<View>
-				<Text>{sourceTitle}</Text>
 				{newsList}
 			</View>
 		);

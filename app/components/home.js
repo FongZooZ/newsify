@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, StatusBar } from 'react-native';
 import { newsSources } from '../../core/config';
 import NewsSource from '../partials/newsSource';
 
@@ -17,10 +17,13 @@ export default class Home extends Component {
 		}
 
 		return (
-			<View style={styles.master}>
-				<ScrollView contentContainerStyle={styles.scrollView}>
-					{sources}
-				</ScrollView>
+			<View>
+				<View style={styles.master}>
+					<StatusBar barStyle="light-content" />
+					<ScrollView contentContainerStyle={styles.scrollView}>
+						{sources}
+					</ScrollView>
+				</View>
 			</View>
 		);
 	}
